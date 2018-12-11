@@ -1,0 +1,29 @@
+- name: "user:{{ item.username }} uid:{{ item.uid }}"
+  become: yes
+  become_user: root
+  block:  
+    - name: "user:{{ item.username }} -> user"
+      user:  
+        name: "{{ item.username }}"
+        state: "{{ item.state }}"
+        uid: "{{ item.uid }}"
+        comment: "{{ item.zid }} - {{ item.name }} - {{ item.email }} - {{ item.tel }}" 
+        password: "{{ item.password }}" 
+        shell: "/bin/bash"
+    - name: "user:{{ item.username }} -> .ssh"
+      file:  
+        state: directory
+        path: "~{{ item.username }}/.ssh"
+        owner: "{{ item.username }}"
+        group: "{{ item.username }}"
+        mode: "0755"
+    - name: "user:{{ item.username }} -> authorized_key"
+      when: item.authorized_key is defined
+      authorized_key:  
+        user: "{{ item.username }}"
+        key: "{{ item.authorized_key }}"
+    - name: "user:{{ item.username }} -> group"
+      group: 
+        name: "{{ item.username }}"
+        gid: "{{ item.uid }}"
+        state: "{{ item.state }}"

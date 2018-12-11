@@ -1,0 +1,42 @@
+- hosts: all
+  tasks:
+    - include: tasks/create_user_and_group.yml
+      loop: "{{ users }}"
+  vars:
+    users:
+      - { 
+          zid: "d7460ef178e64208f98c56499a83fe2f", 
+          state: "present", 
+          name: "Alice Adams", 
+          email: "alice@example.com", 
+          tel: "+1-415-555-0000", 
+          uid: "16120", 
+          username: "alice",
+          password: "$6$TrRuygAqYMJWgAgAxNVeRVzWPgmhgGVZjZeozxoOXAammrZymKiywPGsptoXrEq",
+          authorized_key: "ssh-rsa swAaqPWNrvPkPYIVjcEnJkGOKMTZmQVmGhKJKtXiMJSjYWaQgbGdWaIhXvpkQXdSDozPYhRTexMyhzdvwrvGFZdUDQQmbmCWPNDYemsOWMQZUnejxifTREtAfErRSHPL"
+        }
+      - { 
+          zid: "d7460ef178e64208f98c56499a83fe2f", 
+          state: "present", 
+          name: "Bob Brown", 
+          email: "bob@example.com", 
+          tel: "+1-415-555-000", 
+          uid: "11984", 
+          username: "bob",
+          password: "$6$zcVIMJYIrEzQmqsQpkqLNlNYiDrHNNmxzgKQszypnFMAnuZaNtknNdyiNIlQELuC", 
+          authorized_key: "ssh-rsa auvJkHrZeGjtAQewpYCPsfwkGeSIXdLsxOuCgHunQvfGMVBUZNoZalXbRnxJdELomgpnakvqFBinpDszjsbDNDsWiGYgSDQgfKseFhjQmANgZaozBpYwpNqvEcCyCysF"
+        }
+      - { 
+          zid: "d7460ef178e64208f98c56499a83fe2f", 
+          state: "present", 
+          name: "Carol Curtis", 
+          email: "carol@example.com", 
+          tel: "+1-415-555-000", 
+          uid: "13517", 
+          username: "carol",
+          password: "$6$MgopPabcBrBWJedKsFbLdyLxMfYgQJYixgzRCZTLjhcupLSGHggdIlREtZIhEWAc",
+          authorized_key: "ssh-rsa hqSuaKRgYJWGJcoRuCXcfxhtsEhAKWSlnjroSLXuxGfGrjhSNqqKPNzNEVImRmxIlqaEKFuwhjlaLgMaOwaVrmcnnREZgexiOPmmXFenKokoqeaPgkVOndjVbhqFeSll",
+        }
+
+     
+  
